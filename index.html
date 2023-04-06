@@ -67,19 +67,56 @@
 	</style>
 </head>
 <body>
-	<h1><span id="name"></span> היי </h1>
-	<form>
+	<h1> היי <span id="name"></span></h1>
+	<form id="invitation">
 		<label for="phone">Phone Number:</label>
-		<input type="text" id="phone" name="phone" placeholder="Enter your phone number...">
+		<input required type="text" id="phone" name="phone" placeholder="Enter your phone number...">
 		<label for="arrival">Number of People Arriving:</label>
-		<input type="text" id="arrival" name="arrival" placeholder="Enter the number of people arriving...">
-		<input type="submit" value="Register">
+		<select required type="text" id="arrival" name="arrival" placeholder="Enter the number of people arriving...">
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>עוד</option>
+		</select>
+		<input id="submit" type="submit" value="שלח">
+		<input type="button" value="לא מגיע">
 	</form>
 	<script>
-		  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const name = urlParams.get('name')
-  document.getElementById('name').innerHTML = name || לך;
+		  	const queryString = window.location.search;
+			const urlParams = new URLSearchParams(queryString);
+			const name = urlParams.get('name')
+			document.getElementById('name').innerHTML = name || 'לך';
+			const form = document.getElementById('invitation')
+			form.addEventListener('submit' , (event)=> {
+				event.preventDefault();
+				sendData()
+			})
+			function sendData() {
+				const phone = document.getElementById('phone').value
+				const amount = document.getElementById('arrival').value
+				let attendenceName = name;
+				const payload = {name:attendenceName , amount: amount, phone:phone , isComming:true }
+				console.log(payload);
+				if (phone && amount && name) {
+					executeRequest(payload);
+				}
+				const isComming = document.getElementById('is');
+			}
+
+			function executeRequest(payload) {
+				fetch("https://vivacious-tweed-jacket-jay.cyclic.app//newArrival", {
+					method: "POST",
+					body: JSON.stringify(payload),
+					headers: {
+						"Content-type": "application/json; charset=UTF-8"
+					}
+					}).then((res)=> {
+						console.log(res);
+					}).catch((err) => {
+						console.log(err);
+					});
+			}
+			
 	</script>
 </body>
 </html>
