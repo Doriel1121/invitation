@@ -2,8 +2,11 @@
 <html>
 <head>
 	<title>Event Registration Form</title>
-
+	<meta charset="UTF-8"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+	<!-- <link href="css/custom.css" rel="stylesheet" /> -->
 	<style>
 		body {
 			display: flex;
@@ -15,14 +18,14 @@
 			background-size: cover;
 			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 			direction: rtl;
-			/* text-align: center; */
 			color: #8F6D56;
 			margin: 0;
+			justify-content: center;
 		}
 		h1{
-			margin-top: 10%;
 			font-size: 70px;
 			text-align: center;
+			margin: 0;
 		}
 		p{
 			text-align: center;
@@ -65,9 +68,11 @@
 		}
 		.btn__comming{
 			background-color: #cfe885;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 		}
 		.btn__notComming{
 			background-color: #ffba98;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 		}
 		#location{
 			font-size: 40px;
@@ -75,6 +80,23 @@
 		.map{
 			display: flex;
 			align-items: center;
+		}
+		#loader {
+			display: none;
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			width: 100%;
+			background: rgba(0,0,0,0.75) url(images/loading2.gif) no-repeat center center;
+			z-index: 10000;
+		}
+		.innerLoader{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 100%;
 		}
 
 	</style>
@@ -109,17 +131,28 @@
 			<div class="map">
 				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3390.409546558001!2d34.63895917617039!3d31.813838232583414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502a3a074cb73cb%3A0x8500d0e5ae6a25de!2z15DXlNeV15HXqiDXlNeh16TXnw!5e0!3m2!1sen!2sil!4v1685092426865!5m2!1sen!2sil" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 			</div>
-		</div>
 	</form>
+	<div id="loader">
+		<div class="innerLoader">
+			<lord-icon
+				src="https://cdn.lordicon.com/ulhdumaq.json"
+				trigger="loop"
+				colors="primary:#f4c89c,secondary:#08a88a"
+				style="width:250px;height:250px">
+			</lord-icon>
+		</div>
+	</div>
 	<script>
 		  	const queryString = window.location.search;
 			const urlParams = new URLSearchParams(queryString);
 			const name = urlParams.get('name');
 			const phone = urlParams.get('phone');
+			let spinner = $('#loader');
 			document.getElementById('name').innerHTML = name || 'לך';
 			const form = document.getElementById('invitation');
 			$("form").submit(function (e) {
-				e.preventDefault()
+				e.preventDefault();
+				spinner.show();
 				let btn = $(this).find("button[type=submit]:focus" );
 				let btnName = btn.attr('name');
 				if( btnName.valueOf() === 'coming'){
@@ -132,7 +165,7 @@
 			function sendData() {
 				const amount = document.getElementById('amount').value
 				let attendenceName = name;
-				const payload = {name:attendenceName , amount: amount, phone:phone , isComing: isComing }
+				const payload = {name:attendenceName , amount: amount, phone:phone , isComming: isComing }
 				console.log(payload);
 				if (phone && amount && name) {
 					executeRequest(payload);
@@ -151,9 +184,11 @@
 					}).then((res)=> {
 						window.location.assign(`/thanku.html?is=${isComing}`);
 						console.log(res);
+						spinner.hide();
 					}).catch((err) => {
 						// window.location.assign("/thanku.html");
 						console.log(err);
+						spinner.hide();
 					});
 			}
 

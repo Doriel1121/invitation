@@ -5,23 +5,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <style>
         body{
             display: flex;
 			align-items: center;
 			flex-direction: column;
 			height: 100vh;
-			margin-top: 10%;
 			background: url('/background.png'); 
 			background-repeat: no-repeat;
 			background-size: cover;
 			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 			direction: rtl;
-			/* text-align: center; */
 			color: #8F6D56;
+            justify-content: center;
+            margin: 0;
+        }
+        .thankyou{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 25px;
+        }
+        .messagesWrapper{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 25px;
         }
         p{
             text-align: center;
+            font-size: 30px;
+            margin: 0;
+        }
+        #stickText{
+            font-size: 20px;
         }
         .btn{
 			width: 50%;
@@ -34,16 +54,48 @@
 		.btn__notComming{
 			background-color: #ffba98;
             color: #8F6D56;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 		}
+        img{
+            position: absolute;
+            bottom: 0;
+        }
     </style>
 </head>
 <body>
-    
-    <p>THANK U</p>
-    <button class="btn btn__notComming">עדכן</button>
+    <div class="thankyou">
+        <div class="messagesWrapper">
+            <div>
+                <p id="content"></p>
+                <p id="subContent"></p>
+            </div>
+            <p id="stickText" >במידה ויהיה שינוי נשמח לעדכון</spa>
+        </div>
+        <button class="btn btn__notComming">עדכן</button>
+    </div>
+    <img src="/flower.png" alt="flower"/>
     <script>
+        const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const isComing = urlParams.get('is');
+        console.log(isComing);
+        const message = $('#content')
+        const subMessage = $('#subContent')
+        if (isComing === 'true') {
+            message.text('איזה כיף שתוכל/י להגיע!')
+            subMessage.text('נשמח לראותכם')
+        } else {
+            message.text('')
+            subMessage.text('')
+        }
+
+
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        };
     </script>
 </body>
 </html>
