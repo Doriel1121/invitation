@@ -21,6 +21,7 @@
 			color: #8F6D56;
 			margin: 0;
 			justify-content: center;
+			gap: 5%;
 		}
 		.openning{
 			display: flex;
@@ -109,8 +110,10 @@
 	</style>
 </head>
 <body>
-	<div class="openning">
+	<div>
 		<h1> שלום <span id="name"></span></h1>
+	</div>
+	<div class="openning">
 		<p> נשמח לאישור הגעתך לחתונה של<br/> תמר וגלי </p>
 		<p id="date"><b> בתאריך 22-6-23</b></p>
 	</div>
@@ -134,13 +137,13 @@
 			<button name="coming" type="submit" class="btn btn__comming">מגיעים</button>
 			<button name="notComing" type="submit" class="btn btn__notComming">לא מגיעים</button>
 		</div>
-
+	</form>
 		<div>
 			<p id="location">אהובת הספן, יונה הנביא 2 אשדוד</p>
 			<div class="map">
 				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3390.409546558001!2d34.63895917617039!3d31.813838232583414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502a3a074cb73cb%3A0x8500d0e5ae6a25de!2z15DXlNeV15HXqiDXlNeh16TXnw!5e0!3m2!1sen!2sil!4v1685092426865!5m2!1sen!2sil" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 			</div>
-	</form>
+		</div>
 	<div id="loader">
 		<div class="innerLoader">
 			<lord-icon
