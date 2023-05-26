@@ -106,6 +106,9 @@
 			justify-content: center;
 			height: 100%;
 		}
+		.missing{
+			border: 1px solid red !important;
+		}
 
 	</style>
 </head>
@@ -175,13 +178,16 @@
 				sendData()
 			});
 			function sendData() {
-				const amount = document.getElementById('amount').value
+				const amount = $('#amount').val();
+				console.log(amount);
 				let attendenceName = name;
 				const payload = {name:attendenceName , amount: amount, phone:phone , isComming: isComing }
 				console.log(payload);
-				if (phone && amount && name) {
+				if (phone && amount !== '0' && name) {
 					executeRequest(payload);
 				} else{
+					$('#amount').focus();
+					spinner.hide();
 					console.log('something is missing');
 				}
 			}
