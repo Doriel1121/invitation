@@ -9,9 +9,11 @@
 			display: flex;
 			align-items: center;
 			flex-direction: column;
-			justify-content: center;
 			height: 100vh;
-			background: url('/background.png'); /* light desert color */
+			margin-top: 10%;
+			background: url('/background.png'); 
+			background-repeat: no-repeat;
+			background-size: cover;
 			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 			direction: rtl;
 			/* text-align: center; */
@@ -45,6 +47,7 @@
 			border: transparent;
 			border-bottom: 1px solid #8F6D56;
 			color: #8F6D56;
+			font-size: 50px;
 		}
 		.layout{
 			width: 73%;
@@ -73,14 +76,13 @@
 			align-items: center;
 		}
 
-
 	</style>
 </head>
 <body>
 	<h1> שלום <span id="name"></span></h1>
 	<p> נשמח לאישור הגעתך לחתונה של<br/> תמר וגלי </p>
 	<p id="date"><b> בתאריך 22-6-23</b></p>
-	<form  id="invitation">
+	<form action="thanku.html" id="invitation">
 		<div class="layout">
 			<label class="amountLabel" for="amount">כמה תהיו?</label>
 			<select id="amount">
@@ -119,7 +121,6 @@
 				e.preventDefault()
 				let btn = $(this).find("button[type=submit]:focus" );
 				let btnName = btn.attr('name');
-				let input = $("<button>")
 				if( btnName.valueOf() === 'coming'){
 					isComing = true;
 				} else {
@@ -134,8 +135,9 @@
 				console.log(payload);
 				if (phone && amount && name) {
 					executeRequest(payload);
+				} else{
+					console.log('something is missing');
 				}
-				const isComming = document.getElementById('is');
 			}
 
 			function executeRequest(payload) {
@@ -146,11 +148,14 @@
 						"Content-type": "application/json; charset=UTF-8"
 					}
 					}).then((res)=> {
+						window.location.assign(`/thanku.html?is=${isComing}`);
 						console.log(res);
 					}).catch((err) => {
+						// window.location.assign("/thanku.html");
 						console.log(err);
 					});
 			}
+
 			
 	</script>
 </body>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+			align-items: center;
+			flex-direction: column;
+			height: 100vh;
+			margin-top: 10%;
+			background: url('/background.png'); 
+			background-repeat: no-repeat;
+			background-size: cover;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			direction: rtl;
+			/* text-align: center; */
+			color: #8F6D56;
+        }
+        p{
+            text-align: center;
+        }
+        .btn{
+			width: 50%;
+			height: 55px;
+			font-size: 20px;
+			border-radius: 40px;
+			border: transparent;
+		}
+
+		.btn__notComming{
+			background-color: #ffba98;
+            color: #8F6D56;
+		}
+    </style>
+</head>
+<body>
+    
+    <p>THANK U</p>
+    <button class="btn btn__notComming">עדכן</button>
+    <script>
+        const urlParams = new URLSearchParams(queryString);
+        const isComing = urlParams.get('is');
+    </script>
+</body>
+</html>
