@@ -22,6 +22,13 @@
 			margin: 0;
 			justify-content: center;
 		}
+		.openning{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			gap: 30px;
+		}
 		h1{
 			font-size: 70px;
 			text-align: center;
@@ -102,9 +109,11 @@
 	</style>
 </head>
 <body>
-	<h1> שלום <span id="name"></span></h1>
-	<p> נשמח לאישור הגעתך לחתונה של<br/> תמר וגלי </p>
-	<p id="date"><b> בתאריך 22-6-23</b></p>
+	<div class="openning">
+		<h1> שלום <span id="name"></span></h1>
+		<p> נשמח לאישור הגעתך לחתונה של<br/> תמר וגלי </p>
+		<p id="date"><b> בתאריך 22-6-23</b></p>
+	</div>
 	<form action="thanku.html" id="invitation">
 		<div class="layout">
 			<label class="amountLabel" for="amount">כמה תהיו?</label>
