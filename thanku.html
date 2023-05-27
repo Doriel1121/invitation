@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Assistant">
+
 
     <style>
         body{
@@ -16,7 +18,9 @@
 			background: url('/background.png'); 
 			background-repeat: no-repeat;
 			background-size: cover;
-			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* font-family: 'Assistant' , sans-serif; */
+			/* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 			direction: rtl;
 			color: #8F6D56;
             justify-content: center;
@@ -28,6 +32,7 @@
             justify-content: center;
             flex-direction: column;
             gap: 25px;
+            height: 75%;
         }
         .messagesWrapper{
             display: flex;
@@ -74,6 +79,10 @@
         .mapWrapper{
 			width: 100%;
         }
+        .imgWrapper{
+            height: 25%;
+            max-height: 110px;
+        }
     </style>
 </head>
 <body>
@@ -85,11 +94,13 @@
             </div>
         </div>
         <p id="stickText" >במידה ויהיה שינוי נשמח לעדכון</p>
-        <button onclick="redirectBack()" class="btn btn__notComming">עדכן</button>
+        <button onclick="redirectBack()" class="btn btn__notComming">עדכן הגעה</button>
         <div id="navigation">
         </div>
     </div>
-    <img src="/flower.png" alt="flower"/>
+    <div class="imgWrapper">
+        <img width="125px" src="/flower.png" alt="flower"/>
+    </div>
     <script>
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
