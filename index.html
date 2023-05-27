@@ -117,6 +117,9 @@
 		.missing{
 			border: 1px solid red !important;
 		}
+		iframe{
+			pointer-events: none;
+		}
 
 	</style>
 </head>
@@ -152,7 +155,7 @@
 	</form>
 		<div>
 			<p id="location">אהובת הספן, יונה הנביא 2 אשדוד</p>
-			<div class="map" onclick="runNavigation()")">
+			<div class="map" onclick="runNavigation()">
 				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3390.409546558001!2d34.63895917617039!3d31.813838232583414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502a3a074cb73cb%3A0x8500d0e5ae6a25de!2z15DXlNeV15HXqiDXlNeh16TXnw!5e0!3m2!1sen!2sil!4v1685092426865!5m2!1sen!2sil" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 			</div>
 		</div>
@@ -221,7 +224,7 @@
 
 			function runNavigation() {
 				console.log('erst');
-				window.location.replace('https://waze.com/ul?q=66%20Acacia%20Avenue&ll=45.6906304,-120.810983&navigate=yes')
+				window.location.assign('https://waze.com/ul?ll=31.814016013784585,34.641587740697325&navigate=yes')
 			}
 
 			
