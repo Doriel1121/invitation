@@ -88,7 +88,7 @@
 			</div>
 		</div>
         <p id="stickText" >במידה ויהיה שינוי נשמח לעדכון</p>
-        <button onclick="window.location.assign(`/index.html?name=${name}&phone=${phone}`)" class="btn btn__notComming">עדכן</button>
+        <button onclick="redirectBack()" class="btn btn__notComming">עדכן</button>
     </div>
     <img src="/flower.png" alt="flower"/>
     <script>
@@ -97,7 +97,6 @@
         const isComing = urlParams.get('is');
         const name = urlParams.get('name');
         const phone = urlParams.get('phone');
-        console.log(isComing);
         const message = $('#content')
         const subMessage = $('#subContent');
         if (isComing === 'true') {
@@ -108,8 +107,11 @@
             subMessage.text('')
         }
         function runNavigation() {
-				window.location.assign('https://waze.com/ul?ll=31.814016013784585,34.641587740697325&navigate=yes')
-			}
+            window.location.assign('https://waze.com/ul?ll=31.814016013784585,34.641587740697325&navigate=yes')
+        }
+        function redirectBack() {
+            window.location.replace(`/index.html?phone=${phone}&name=${name}`)
+        }
     </script>
 </body>
 </html>
