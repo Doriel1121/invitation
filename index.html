@@ -6,6 +6,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 	<script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet"/>
+
 	<!-- <link href="css/custom.css" rel="stylesheet" /> -->
 	<style>
 		body {
@@ -213,7 +215,7 @@
 						"Content-type": "application/json; charset=UTF-8"
 					}
 					}).then((res)=> {
-						window.location.replace(`/thanku.html?is=${isComing}`);
+						window.location.replace(`/thanku.html?is=${isComing}&name=${payload.name}&phone=${payload.phone}`);
 						console.log(res);
 						spinner.hide();
 					}).catch((err) => {

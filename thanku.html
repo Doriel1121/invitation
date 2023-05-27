@@ -60,6 +60,17 @@
             position: absolute;
             bottom: 0;
         }
+        .map{
+			display: flex;
+			align-items: center;
+            justify-content: center;
+		}
+        #location{
+            font-size: 20px;
+        }
+        iframe{
+			pointer-events: none;
+		}
     </style>
 </head>
 <body>
@@ -69,18 +80,26 @@
                 <p id="content"></p>
                 <p id="subContent"></p>
             </div>
-            <p id="stickText" >במידה ויהיה שינוי נשמח לעדכון</spa>
         </div>
-        <button class="btn btn__notComming">עדכן</button>
+        <div>
+			<p id="location">אהובת הספן, יונה הנביא 2 אשדוד</p>
+			<div class="map" onclick="runNavigation()">
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3390.409546558001!2d34.63895917617039!3d31.813838232583414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502a3a074cb73cb%3A0x8500d0e5ae6a25de!2z15DXlNeV15HXqiDXlNeh16TXnw!5e0!3m2!1sen!2sil!4v1685092426865!5m2!1sen!2sil" width="350" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+			</div>
+		</div>
+        <p id="stickText" >במידה ויהיה שינוי נשמח לעדכון</p>
+        <button onclick="window.location.assign(`/index.html?name=${name}&phone=${phone}`)" class="btn btn__notComming">עדכן</button>
     </div>
     <img src="/flower.png" alt="flower"/>
     <script>
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const isComing = urlParams.get('is');
+        const name = urlParams.get('name');
+        const phone = urlParams.get('phone');
         console.log(isComing);
         const message = $('#content')
-        const subMessage = $('#subContent')
+        const subMessage = $('#subContent');
         if (isComing === 'true') {
             message.text('איזה כיף שתוכל/י להגיע!')
             subMessage.text('נשמח לראותכם')
@@ -88,6 +107,9 @@
             message.text('')
             subMessage.text('')
         }
+        function runNavigation() {
+				window.location.assign('https://waze.com/ul?ll=31.814016013784585,34.641587740697325&navigate=yes')
+			}
     </script>
 </body>
 </html>
