@@ -134,7 +134,7 @@
 <body>
 	<div class="wrapper">
 	<div>
-		<h1> שלום <span id="name"></span></h1>
+		<h1><b> שלום <span id="name"></span></b></h1>
 	</div>
 	<div class="openning">
 		<p> נשמח לאישור הגעתך לחתונה של<br/> תמר וגלי </p>
@@ -203,7 +203,7 @@
 	   const amount = $('#amount').val();
 	   console.log(amount);
 	   let attendenceName = name;
-	   const payload = {name:attendenceName , amount: amount, phone:phone , isComming: isComing }
+	   const payload = {name:attendenceName , amount: isComing ? amount : 0, phone:phone , isComming: isComing }
 	   console.log(payload);
 	   if (isComing) {
 		   if (phone && amount !== '0' && name) {
