@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
     <style>
         body{
             display: flex;
@@ -77,11 +78,7 @@
                 <p id="subContent"></p>
             </div>
         </div>
-        <div>
-			<p id="location">אהובת הספן, יונה הנביא 2 אשדוד</p>
-			<div class="map" onclick="runNavigation()">
-				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3390.409546558001!2d34.63895917617039!3d31.813838232583414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502a3a074cb73cb%3A0x8500d0e5ae6a25de!2z15DXlNeV15HXqiDXlNeh16TXnw!5e0!3m2!1sen!2sil!4v1685092426865!5m2!1sen!2sil" width="350" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-			</div>
+        <div id="navigation">
 		</div>
         <p id="stickText" >במידה ויהיה שינוי נשמח לעדכון</p>
         <button onclick="redirectBack()" class="btn btn__notComming">עדכן</button>
@@ -98,7 +95,12 @@
         if (isComing === 'true') {
             message.text('איזה כיף שתוכל/י להגיע!')
             subMessage.text('נשמח לראותכם')
+            $('#navigation').html(`<p id="location">אהובת הספן, יונה הנביא 2 אשדוד</p>
+			<div class="map" onclick="runNavigation()">
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3390.409546558001!2d34.63895917617039!3d31.813838232583414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502a3a074cb73cb%3A0x8500d0e5ae6a25de!2z15DXlNeV15HXqiDXlNeh16TXnw!5e0!3m2!1sen!2sil!4v1685092426865!5m2!1sen!2sil" width="350" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+			</div>`)
         } else {
+
             message.text('')
             subMessage.text('')
         }

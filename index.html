@@ -3,11 +3,10 @@
 <head>
 	<title>Event Registration Form</title>
 	<meta charset="UTF-8"/>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 	<script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet"/>
-
 	<!-- <link href="css/custom.css" rel="stylesheet" /> -->
 	<style>
 		body {
@@ -95,9 +94,13 @@
 		#location{
 			font-size: 40px;
 		}
+		.mapWrapper{
+			width: 100%;
+		}
 		.map{
 			display: flex;
 			align-items: center;
+			justify-content: center;
 		}
 		#loader {
 			display: none;
@@ -121,6 +124,9 @@
 		}
 		iframe{
 			pointer-events: none;
+			width: 90%;
+			height: 30dvh;
+    		max-height: 600px;
 		}
 
 	</style>
@@ -132,7 +138,7 @@
 	</div>
 	<div class="openning">
 		<p> נשמח לאישור הגעתך לחתונה של<br/> תמר וגלי </p>
-		<p id="date"><b> בתאריך 22-6-23</b></p>
+		<p id="date"><b> בתאריך 22.06.23</b></p>
 	</div>
 	<form action="thanku.html" id="invitation">
 		<div class="layout">
@@ -155,10 +161,10 @@
 			<button name="notComing" type="submit" class="btn btn__notComming">לא מגיעים</button>
 		</div>
 	</form>
-		<div>
+		<div class="mapWrapper">
 			<p id="location">אהובת הספן, יונה הנביא 2 אשדוד</p>
 			<div class="map" onclick="runNavigation()">
-				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3390.409546558001!2d34.63895917617039!3d31.813838232583414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502a3a074cb73cb%3A0x8500d0e5ae6a25de!2z15DXlNeV15HXqiDXlNeh16TXnw!5e0!3m2!1sen!2sil!4v1685092426865!5m2!1sen!2sil" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3390.409546558001!2d34.63895917617039!3d31.813838232583414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502a3a074cb73cb%3A0x8500d0e5ae6a25de!2z15DXlNeV15HXqiDXlNeh16TXnw!5e0!3m2!1sen!2sil!4v1685092426865!5m2!1sen!2sil" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 			</div>
 		</div>
 	<div id="loader">
@@ -172,64 +178,75 @@
 		</div>
 	</div>
 </div>
-	<script>
-		  	const queryString = window.location.search;
-			const urlParams = new URLSearchParams(queryString);
-			const name = urlParams.get('name');
-			const phone = urlParams.get('phone');
-			let spinner = $('#loader');
-			$('#name').html(name || 'לך');
-			// const form = $('#invitation');
-			$("form").submit(function (e) {
-				e.preventDefault();
-				spinner.show();
-				let btn = $(this).find("button[type=submit]:focus" );
-				let btnName = btn.attr('name');
-				if( btnName.valueOf() === 'coming'){
-					isComing = true;
-				} else {
-					isComing = false;
-				}
-				sendData()
-			});
-			function sendData() {
-				const amount = $('#amount').val();
-				console.log(amount);
-				let attendenceName = name;
-				const payload = {name:attendenceName , amount: amount, phone:phone , isComming: isComing }
-				console.log(payload);
-				if (phone && amount !== '0' && name) {
-					executeRequest(payload);
-				} else{
-					$('#amount').focus();
-					spinner.hide();
-					console.log('something is missing');
-				}
-			}
+<script>
+	const queryString = window.location.search;
+   const urlParams = new URLSearchParams(queryString);
+   const name = urlParams.get('name');
+   const phone = urlParams.get('phone');
+   let isExist = false;
+   let spinner = $('#loader');
+   $('#name').html(name || 'לך');
+   // const form = $('#invitation');
+   $("form").submit(function (e) {
+	   e.preventDefault();
+	   spinner.show();
+	   let btn = $(this).find("button[type=submit]:focus" );
+	   let btnName = btn.attr('name');
+	   if( btnName.valueOf() === 'coming'){
+		   isComing = true;
+	   } else {
+		   isComing = false;
+	   }
+	   sendData()
+   });
+   function sendData() {
+	   const amount = $('#amount').val();
+	   console.log(amount);
+	   let attendenceName = name;
+	   const payload = {name:attendenceName , amount: amount, phone:phone , isComming: isComing }
+	   console.log(payload);
+	   if (isComing) {
+		   if (phone && amount !== '0' && name) {
+			   executeRequest(payload);
+		   } else{
+			   $('#amount').focus();
+			   spinner.hide();
+			   console.log('something is missing');
+		   }
+	   } else {
+		   executeRequest(payload);
+	   }
+   }
 
-			function executeRequest(payload) {
-				fetch("https://vivacious-tweed-jacket-jay.cyclic.app/newArrival", {
-					method: "POST",
-					body: JSON.stringify(payload),
-					headers: {
-						"Content-type": "application/json; charset=UTF-8"
-					}
-					}).then((res)=> {
-						window.location.replace(`/thanku.html?is=${isComing}&name=${payload.name}&phone=${payload.phone}`);
-						console.log(res);
-						spinner.hide();
-					}).catch((err) => {
-						console.log(err);
-						spinner.hide();
-					});
-			}
+   function executeRequest(payload) {
+	   fetch("https://vivacious-tweed-jacket-jay.cyclic.app/newArrival", {
+		   method: "POST",
+		   body: JSON.stringify(payload),
+		   headers: {
+			   "Content-type": "application/json; charset=UTF-8"
+		   }
+		   }).then((res)=> {
+			   window.location.replace(`/thanku.html?is=${isComing}&name=${payload.name}&phone=${payload.phone}`);
+			   console.log(res);
+			   spinner.hide();
+		   }).catch((err) => {
+			   console.log(err);
+			   spinner.hide();
+		   });
+   }
 
-			function runNavigation() {
-				console.log('erst');
-				window.location.assign('https://waze.com/ul?ll=31.814016013784585,34.641587740697325&navigate=yes')
-			}
+   function runNavigation() {
+	   window.location.assign('https://waze.com/ul?ll=31.814016013784585,34.641587740697325&navigate=yes');
+   }
 
-			
-	</script>
+   
+//    fetch(`http://localhost:3000/arrival/${phone}`, {
+// 	   method: "GET"
+// 	   }).then((res)=> {
+// 		   res.json().then((response => isExist = response.length > 0 ;
+// 	   }).catch((err) => {
+// 		   console.log(err);
+// 	   });
+</script>
 </body>
 </html>
