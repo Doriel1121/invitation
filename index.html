@@ -21,6 +21,14 @@
 			color: #8F6D56;
 			margin: 0;
 			justify-content: center;
+		}
+		.wrapper{
+			width: 90%;
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+			justify-content: center;
+			height: 100%;
 			gap: 5%;
 		}
 		.openning{
@@ -31,13 +39,13 @@
 			gap: 30px;
 		}
 		h1{
-			font-size: 70px;
+			font-size: 90px;
 			text-align: center;
 			margin: 0;
 		}
 		p{
 			text-align: center;
-			font-size: 50px;
+			font-size: 60px;
 		}
 		#date{
 			margin-top: 0px;
@@ -113,6 +121,7 @@
 	</style>
 </head>
 <body>
+	<div class="wrapper">
 	<div>
 		<h1> שלום <span id="name"></span></h1>
 	</div>
@@ -144,7 +153,7 @@
 		<div>
 			<p id="location">אהובת הספן, יונה הנביא 2 אשדוד</p>
 			<div class="map">
-				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3390.409546558001!2d34.63895917617039!3d31.813838232583414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502a3a074cb73cb%3A0x8500d0e5ae6a25de!2z15DXlNeV15HXqiDXlNeh16TXnw!5e0!3m2!1sen!2sil!4v1685092426865!5m2!1sen!2sil" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3390.409546558001!2d34.63895917617039!3d31.813838232583414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502a3a074cb73cb%3A0x8500d0e5ae6a25de!2z15DXlNeV15HXqiDXlNeh16TXnw!5e0!3m2!1sen!2sil!4v1685092426865!5m2!1sen!2sil" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 			</div>
 		</div>
 	<div id="loader">
@@ -157,6 +166,7 @@
 			</lord-icon>
 		</div>
 	</div>
+</div>
 	<script>
 		  	const queryString = window.location.search;
 			const urlParams = new URLSearchParams(queryString);
@@ -200,11 +210,10 @@
 						"Content-type": "application/json; charset=UTF-8"
 					}
 					}).then((res)=> {
-						window.location.assign(`/thanku.html?is=${isComing}`);
+						window.location.replace(`/thanku.html?is=${isComing}`);
 						console.log(res);
 						spinner.hide();
 					}).catch((err) => {
-						// window.location.assign("/thanku.html");
 						console.log(err);
 						spinner.hide();
 					});
