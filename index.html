@@ -173,8 +173,8 @@
 			const name = urlParams.get('name');
 			const phone = urlParams.get('phone');
 			let spinner = $('#loader');
-			document.getElementById('name').innerHTML = name || 'לך';
-			const form = document.getElementById('invitation');
+			$('#name').html(name || 'לך');
+			// const form = $('#invitation');
 			$("form").submit(function (e) {
 				e.preventDefault();
 				spinner.show();
