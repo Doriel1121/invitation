@@ -220,25 +220,31 @@
 	   sendData()
    });
    function sendData() {
+	alert('0')
 	   const amount = $('#amount').val();
 	   console.log(amount);
 	   let attendenceName = name;
 	   const payload = {name:attendenceName , amount: isComing ? amount : 0, phone:phone , isComming: isComing }
 	   console.log(payload);
 	   if (isComing) {
+		alert('1')
 		   if (phone && amount !== '0' && name) {
+			alert('2')
 			   executeRequest(payload);
 		   } else{
+			alert('3')
 			   $('#amount').focus();
 			   spinner.hide();
 			   console.log('something is missing');
 		   }
 	   } else {
+		alert('-1')
 		   executeRequest(payload);
 	   }
    }
 
    function executeRequest(payload) {
+	alert('4')
 	   fetch("https://easy-cyan-lizard-robe.cyclic.app/newArrival", {
 		   method: "POST",
 		   body: JSON.stringify(payload),
@@ -246,6 +252,7 @@
 			   "Content-type": "application/json; charset=UTF-8"
 		   }
 		   }).then((res)=> {
+			alert('5')
 			   window.location.replace(`/thanku.html?is=${isComing}&name=${payload.name}&phone=${payload.phone}`);
 			   console.log(res);
 			   spinner.hide();
