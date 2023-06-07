@@ -208,13 +208,18 @@
    let spinner = $('#loader');
    $('#name').html(name || 'לך');
    $("form").submit(function (e) {
+	alert('00')
 	   e.preventDefault();
 	   spinner.show();
+	   alert('01')
 	   let btn = $(this).find("button[type=submit]:focus" );
+	   alert('02')
 	   let btnName = btn.attr('name');
 	   if( btnName.valueOf() === 'coming'){
+		alert('03')
 		   isComing = true;
 	   } else {
+		alert('04')
 		   isComing = false;
 	   }
 	   sendData()
