@@ -37,6 +37,7 @@
 			justify-content: center;
 			height: 100%;
 			gap: 3%;
+			max-width: 550px;
 		}
 		.openning{
 			display: flex;
@@ -147,7 +148,7 @@
 		<h1> שלום <span id="name"></span></h1>
 	</div>
 	<div class="openning">
-		<p> נשמח לאישור הגעתך לחתונה של<br/> תמר וגלי </p>
+		<p> נשמח לאישור הגעתך/ם לחתונה של<br/> תמר וגלי </p>
 		<p id="date"><b> בתאריך 22.06.23</b></p>
 	</div>
 	<form action="thanku.html" id="invitation">
@@ -229,7 +230,7 @@
    }
 
    function executeRequest(payload) {
-	   fetch("https://vivacious-tweed-jacket-jay.cyclic.app/newArrival", {
+	   fetch("https://easy-cyan-lizard-robe.cyclic.app/newArrival", {
 		   method: "POST",
 		   body: JSON.stringify(payload),
 		   headers: {
