@@ -51,6 +51,7 @@
 			font-size: 35px;
 			text-align: center;
 			margin: 0;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 		}
 		p{
 			text-align: center;
@@ -210,9 +211,11 @@
    $("form").submit(function (e) {
 	   e.preventDefault();
 	   spinner.show();
-	   let btn = $(this).find("button[type=submit]:focus" );
-	   let btnName = btn.attr('name');
-	   if( btnName.valueOf() === 'coming'){
+	//    console.log(e.originalEvent.submitter.name);
+	//    let btn = $(e).find("button[type=submit]:focus");
+	//    console.log(btn.attr('name'));
+	   let btnName = e.originalEvent.submitter.name;
+	   if( btnName === 'coming'){
 		   isComing = true;
 	   } else {
 		   isComing = false;
