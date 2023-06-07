@@ -178,8 +178,8 @@
 		</div>
 
 		<div class="layout">
-			<button id="coming" name="coming" type="submit" class="btn btn__comming">מגיעים</button>
-			<button id="notComing" name="notComing" type="submit" class="btn btn__notComming">לא מגיעים</button>
+			<button id="coming" name="coming" type="submit" class="btn btn__comming" data-button-name="coming">מגיעים</button>
+			<button id="notComing" name="notComing" type="submit" class="btn btn__notComming" data-button-name="notComing">לא מגיעים</button>
 		</div>
 	</form>
 		<div class="mapWrapper">
@@ -214,10 +214,10 @@
 	   e.preventDefault();
 	   spinner.show();
 	   alert('01')
-	   let btn = e.originalEvent.explicitOriginalTarget || document.activeElement;
+	   let btn = $(e.target).find("button[type=submit]:focus");
 	   alert('02')
 	   alert(btn)
-	   let btnName = btn.name;
+	   let btnName = btn.data('button-name');
 	   alert(btnName)
 	   if( btnName == 'coming'){
 		// if(btnName === 'coming'){
