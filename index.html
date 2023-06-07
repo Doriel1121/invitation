@@ -178,8 +178,8 @@
 		</div>
 
 		<div class="layout">
-			<button name="coming" type="submit" class="btn btn__comming">מגיעים</button>
-			<button name="notComing" type="submit" class="btn btn__notComming">לא מגיעים</button>
+			<button id="coming" name="coming" type="submit" class="btn btn__comming">מגיעים</button>
+			<button id="notComing" name="notComing" type="submit" class="btn btn__notComming">לא מגיעים</button>
 		</div>
 	</form>
 		<div class="mapWrapper">
@@ -206,17 +206,21 @@
    const phone = urlParams.get('phone');
    let isExist = false;
    let spinner = $('#loader');
+   let which = '';
    $('#name').html(name || 'לך');
    $("form").submit(function (e) {
+	
 	alert('00')
 	   e.preventDefault();
 	   spinner.show();
 	   alert('01')
-	   let btn = $(this).find("button[type=submit]:focus" );
+	   let btn = e.originalEvent.explicitOriginalTarget || document.activeElement;
 	   alert('02')
-	   let btnName = btn.attr('name');
+	   alert(btn)
+	   let btnName = btn.name;
 	   alert(btnName.valueOf());
 	   if( btnName.valueOf() === 'coming'){
+		// if(btnName === 'coming'){
 		alert('03')
 		   isComing = true;
 	   } else {
@@ -225,6 +229,7 @@
 	   }
 	   sendData()
    });
+
    function sendData() {
 	alert('0')
 	   const amount = $('#amount').val();
