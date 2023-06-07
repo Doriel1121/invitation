@@ -209,55 +209,38 @@
    let which = '';
    $('#name').html(name || 'לך');
    $("form").submit(function (e) {
-	
-	// alert('00')
 	   e.preventDefault();
 	   spinner.show();
-	//    alert('01')
-	   console.log(e.originalEvent.submitter.name);
-	   let btn = $(e).find("button[type=submit]:focus");
-	//    alert('02')
-	//    alert(btn)
-	   console.log(btn.attr('name'));
+	//    console.log(e.originalEvent.submitter.name);
+	//    let btn = $(e).find("button[type=submit]:focus");
+	//    console.log(btn.attr('name'));
 	   let btnName = e.originalEvent.submitter.name;
-	//    alert(btnName)
 	   if( btnName === 'coming'){
-		// if(btnName === 'coming'){
-			// alert('03')
 		   isComing = true;
 	   } else {
-		// alert('04')
 		   isComing = false;
 	   }
 	   sendData()
    });
 
    function sendData() {
-	// alert('0')
 	   const amount = $('#amount').val();
-	   console.log(amount);
 	   let attendenceName = name;
 	   const payload = {name:attendenceName , amount: isComing ? amount : 0, phone:phone , isComming: isComing }
-	   console.log(payload);
 	   if (isComing) {
-		// alert('1')
 		   if (phone && amount !== '0' && name) {
-			// alert('2')
 			   executeRequest(payload);
 		   } else{
-			// alert('3')
 			   $('#amount').focus();
 			   spinner.hide();
 			   console.log('something is missing');
 		   }
 	   } else {
-		// alert('-1')
 		   executeRequest(payload);
 	   }
    }
 
    function executeRequest(payload) {
-	alert('4')
 	   fetch("https://easy-cyan-lizard-robe.cyclic.app/newArrival", {
 		   method: "POST",
 		   body: JSON.stringify(payload),
@@ -265,7 +248,6 @@
 			   "Content-type": "application/json; charset=UTF-8"
 		   }
 		   }).then((res)=> {
-			alert('5')
 			   window.location.replace(`/thanku.html?is=${isComing}&name=${payload.name}&phone=${payload.phone}`);
 			   console.log(res);
 			   spinner.hide();
@@ -278,15 +260,6 @@
    function runNavigation() {
 	   window.location.assign('https://waze.com/ul?ll=31.814016013784585,34.641587740697325&navigate=yes');
    }
-
-   
-//    fetch(`http://localhost:3000/arrival/${phone}`, {
-// 	   method: "GET"
-// 	   }).then((res)=> {
-// 		   res.json().then((response => isExist = response.length > 0 ;
-// 	   }).catch((err) => {
-// 		   console.log(err);
-// 	   });
 </script>
 </body>
 </html>
